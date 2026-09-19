@@ -11,3 +11,7 @@ dist/
 # Editors
 .vscode/
 .idea/
+
+# Machine-generated symlink to .agents/skills — unreadable/unnecessary over
+# the remote device bridge and not needed for the project to build.
+frontend/.claude/skills/
