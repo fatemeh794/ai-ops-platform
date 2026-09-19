@@ -1,1 +1,3 @@
-export * from './lib/data-access-loan/data-access-loan';
+export * from './lib/api-base-url';
+export * from './lib/loan';
+export * from './lib/models';

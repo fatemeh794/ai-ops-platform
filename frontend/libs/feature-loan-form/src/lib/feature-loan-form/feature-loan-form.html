@@ -1,1 +1,134 @@
-<p>FeatureLoanForm works!</p>
+<section class="section form-page">
+  <div class="container form-container">
+    <span class="eyebrow">{{ i18n.t('form.eyebrow') }}</span>
+    <h1 class="section-title">{{ i18n.t('form.title') }}</h1>
+
+    <form class="card-elevated form-card" (submit)="onSubmit(); $event.preventDefault()">
+      <div class="form-section">
+        <h2>{{ i18n.t('form.section.applicant') }}</h2>
+        <div class="grid-2">
+          <div class="field">
+            <label for="full_name">{{ i18n.t('form.full_name') }}</label>
+            <input id="full_name" type="text" [formField]="loanForm.full_name" />
+            @if (loanForm.full_name().touched() && loanForm.full_name().errors().length) {
+              <span class="field-error">{{ fieldError(loanForm.full_name().errors()) }}</span>
+            }
+          </div>
+
+          <div class="field">
+            <label for="national_id">{{ i18n.t('form.national_id') }}</label>
+            <input id="national_id" type="text" class="ltr" [formField]="loanForm.national_id" />
+            @if (loanForm.national_id().touched() && loanForm.national_id().errors().length) {
+              <span class="field-error">{{ fieldError(loanForm.national_id().errors()) }}</span>
+            }
+          </div>
+
+          <div class="field">
+            <label for="monthly_income">{{ i18n.t('form.monthly_income') }}</label>
+            <input
+              id="monthly_income"
+              type="number"
+              class="ltr"
+              [formField]="loanForm.monthly_income"
+            />
+            @if (loanForm.monthly_income().touched() && loanForm.monthly_income().errors().length) {
+              <span class="field-error">{{ fieldError(loanForm.monthly_income().errors()) }}</span>
+            }
+          </div>
+
+          <div class="field">
+            <label for="job_title">{{ i18n.t('form.job_title') }}</label>
+            <input id="job_title" type="text" [formField]="loanForm.job_title" />
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h2>{{ i18n.t('form.section.loan') }}</h2>
+        <div class="grid-2">
+          <div class="field">
+            <label for="requested_amount">{{ i18n.t('form.requested_amount') }}</label>
+            <input
+              id="requested_amount"
+              type="number"
+              class="ltr"
+              [formField]="loanForm.requested_amount"
+            />
+            @if (
+              loanForm.requested_amount().touched() && loanForm.requested_amount().errors().length
+            ) {
+              <span class="field-error">{{ fieldError(loanForm.requested_amount().errors()) }}</span>
+            }
+          </div>
+
+          <div class="field">
+            <label for="repayment_months">{{ i18n.t('form.repayment_months') }}</label>
+            <input
+              id="repayment_months"
+              type="number"
+              class="ltr"
+              [formField]="loanForm.repayment_months"
+            />
+            @if (
+              loanForm.repayment_months().touched() && loanForm.repayment_months().errors().length
+            ) {
+              <span class="field-error">{{ fieldError(loanForm.repayment_months().errors()) }}</span>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="collateral-head">
+          <h2>{{ i18n.t('form.section.collateral') }}</h2>
+          <button type="button" class="btn btn-ghost btn-sm" (click)="addCollateral()">
+            <lib-icon name="plus" [size]="14" />
+            {{ i18n.t('form.collateral.add') }}
+          </button>
+        </div>
+
+        @if (loanForm.collaterals.length === 0) {
+          <p class="field-hint">{{ i18n.t('form.collateral.empty') }}</p>
+        }
+
+        <div class="collateral-list">
+          @for (collateral of loanForm.collaterals; track $index; let i = $index) {
+            <div class="collateral-row">
+              <div class="field">
+                <label>{{ i18n.t('form.collateral.type') }}</label>
+                <input type="text" [formField]="collateral.asset_type" />
+              </div>
+              <div class="field">
+                <label>{{ i18n.t('form.collateral.value') }}</label>
+                <input type="number" class="ltr" [formField]="collateral.estimated_value" />
+              </div>
+              <button
+                type="button"
+                class="btn btn-ghost btn-sm collateral-remove"
+                (click)="removeCollateral(i)"
+              >
+                <lib-icon name="trash" [size]="14" />
+                {{ i18n.t('form.collateral.remove') }}
+              </button>
+            </div>
+          }
+        </div>
+      </div>
+
+      @if (errorMessage()) {
+        <p class="field-error form-error">{{ errorMessage() }}</p>
+      }
+
+      <button
+        type="submit"
+        class="btn btn-primary btn-lg"
+        [disabled]="loanForm().invalid() || submitting()"
+      >
+        {{ submitting() ? i18n.t('form.submitting') : i18n.t('form.submit') }}
+        @if (!submitting()) {
+          <lib-icon name="arrow-right" [size]="18" />
+        }
+      </button>
+    </form>
+  </div>
+</section>

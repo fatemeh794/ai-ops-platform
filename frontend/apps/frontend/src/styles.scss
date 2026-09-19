@@ -1,1 +1,319 @@
-/* You can add global styles to this file, and also import other style files */
+/* ============================================================
+   CreditScope — global design tokens & base styles
+   Inspired by a modern SaaS look (cream background, bold rounded
+   type, orange + deep-teal accents, floating soft-shadow cards).
+   Bilingual: English (LTR, Manrope) / Persian (RTL, Vazirmatn).
+   ============================================================ */
+
+:root {
+  /* --- color --- */
+  --color-bg: #fbf3e8;
+  --color-surface: #ffffff;
+  --color-primary: #f0632a;
+  --color-primary-dark: #d9531f;
+  --color-secondary: #1f6f57;
+  --color-secondary-dark: #17513f;
+  --color-ink: #1a1a1a;
+  --color-muted: #6b6459;
+  --color-border: rgba(26, 26, 26, 0.08);
+  --color-danger: #c9432f;
+  --color-warning: #d99a1f;
+  --color-success: #1f6f57;
+
+  /* --- radius --- */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  /* --- shadow --- */
+  --shadow-sm: 0 8px 20px -12px rgba(26, 26, 26, 0.18);
+  --shadow-md: 0 20px 40px -20px rgba(26, 26, 26, 0.22);
+  --shadow-lg: 0 30px 60px -25px rgba(26, 26, 26, 0.28);
+
+  /* --- type --- */
+  --font-en: 'Manrope', system-ui, -apple-system, sans-serif;
+  --font-fa: 'Vazirmatn', 'Manrope', system-ui, sans-serif;
+  --font-current: var(--font-en);
+
+  /* --- layout --- */
+  --container-w: 1120px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+}
+
+body {
+  font-family: var(--font-current);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+html[dir='rtl'] {
+  --font-current: var(--font-fa);
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Numbers, currency, IDs and any embedded Latin/code content must
+   stay left-to-right even inside an RTL (Persian) layout. */
+.ltr,
+code,
+pre {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+/* --- layout helpers --- */
+.container {
+  width: 100%;
+  max-width: var(--container-w);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section {
+  padding: 88px 0;
+}
+
+@media (max-width: 720px) {
+  .section {
+    padding: 56px 0;
+  }
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+@media (max-width: 860px) {
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- typography helpers --- */
+.eyebrow {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.section-lead {
+  font-size: 17px;
+  color: var(--color-muted);
+  line-height: 1.7;
+  max-width: 640px;
+}
+
+.accent {
+  color: var(--color-primary);
+}
+
+/* --- buttons --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 14px 26px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    opacity 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--color-primary-dark);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+  background: var(--color-secondary);
+  color: #fff;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--color-secondary-dark);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-ink);
+  border: 1.5px solid var(--color-border);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  border-color: var(--color-ink);
+}
+
+.btn-sm {
+  padding: 9px 18px;
+  font-size: 13px;
+}
+
+/* --- surfaces --- */
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  padding: 28px;
+}
+
+.card-elevated {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 28px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.pill-low {
+  background: rgba(31, 111, 87, 0.12);
+  color: var(--color-secondary);
+}
+
+.pill-medium {
+  background: rgba(217, 154, 31, 0.14);
+  color: #a3720f;
+}
+
+.pill-high {
+  background: rgba(201, 67, 47, 0.12);
+  color: var(--color-danger);
+}
+
+/* decorative soft-glow blob, used behind hero art / icon badges */
+.bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(240, 99, 42, 0.18) 0%,
+    rgba(240, 99, 42, 0) 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* form fields, shared across the loan application form */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.field input,
+.field select {
+  font-family: inherit;
+  font-size: 15px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: var(--color-primary);
+}
+
+.field-error {
+  font-size: 12.5px;
+  color: var(--color-danger);
+}
+
+.field-hint {
+  font-size: 12.5px;
+  color: var(--color-muted);
+}
+
+/* icons that imply direction (e.g. an arrow pointing "forward") should
+   mirror when the page is RTL */
+html[dir='rtl'] .icon-directional {
+  transform: scaleX(-1);
+}

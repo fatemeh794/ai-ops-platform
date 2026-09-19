@@ -1,0 +1,94 @@
+<section class="hero">
+  <div class="bg-orb hero-orb-1"></div>
+  <div class="bg-orb hero-orb-2"></div>
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <span class="eyebrow">{{ i18n.t('hero.eyebrow') }}</span>
+      <h1 class="hero-title">{{ i18n.t('hero.title') }}</h1>
+      <p class="section-lead">{{ i18n.t('hero.lead') }}</p>
+      <div class="hero-actions">
+        <a routerLink="/apply" class="btn btn-primary">
+          {{ i18n.t('hero.cta') }}
+          <lib-icon name="arrow-right" [size]="18" />
+        </a>
+        <a href="#steps" class="btn btn-ghost">{{ i18n.t('hero.cta.secondary') }}</a>
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <div class="hero-card hero-card-1">
+        <span class="hero-card-label">{{ i18n.t('dash.risk_level') }}</span>
+        <span class="pill pill-low">{{ i18n.t('dash.risk_level.low') }}</span>
+      </div>
+      <div class="hero-card hero-card-2">
+        <span class="hero-card-label">{{ i18n.t('dash.policies.score') }}</span>
+        <span class="hero-card-value ltr">92%</span>
+      </div>
+      <div class="hero-card hero-card-3">
+        <lib-icon-badge icon="shield" />
+        <div>
+          <span class="hero-card-label">{{ i18n.t('dash.risk_score') }}</span>
+          <span class="hero-card-value ltr">24 / 100</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">{{ i18n.t('features.eyebrow') }}</span>
+      <h2 class="section-title">{{ i18n.t('features.title') }}</h2>
+    </div>
+
+    <div class="grid-3 features-grid">
+      @for (f of features; track f.key) {
+        <div class="card feature-card">
+          <lib-icon-badge [icon]="f.icon" />
+          <h3>{{ i18n.t(f.key + '.title') }}</h3>
+          <p class="section-lead">{{ i18n.t(f.key + '.body') }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section steps-section" id="steps">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">{{ i18n.t('steps.eyebrow') }}</span>
+      <h2 class="section-title">{{ i18n.t('steps.title') }}</h2>
+    </div>
+
+    <div class="timeline">
+      @for (s of steps; track s.key; let last = $last) {
+        <div class="timeline-row">
+          <div class="timeline-marker">
+            <lib-icon-badge [icon]="s.icon" size="lg" />
+            @if (!last) {
+              <span class="timeline-line"></span>
+            }
+          </div>
+          <div class="card-elevated timeline-card">
+            <h3>{{ i18n.t(s.key + '.title') }}</h3>
+            <p class="section-lead">{{ i18n.t(s.key + '.body') }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section cta-section">
+  <div class="container">
+    <div class="card-elevated cta-card">
+      <h2 class="section-title">{{ i18n.t('cta.title') }}</h2>
+      <p class="section-lead">{{ i18n.t('cta.lead') }}</p>
+      <a routerLink="/apply" class="btn btn-primary">
+        {{ i18n.t('cta.button') }}
+        <lib-icon name="arrow-right" [size]="18" />
+      </a>
+    </div>
+  </div>
+</section>

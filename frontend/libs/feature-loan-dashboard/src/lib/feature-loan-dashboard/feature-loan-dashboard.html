@@ -1,1 +1,102 @@
-<p>FeatureLoanDashboard works!</p>
+<section class="section dash-page">
+  <div class="container dash-container">
+    <span class="eyebrow">{{ i18n.t('dash.eyebrow') }}</span>
+    <h1 class="section-title">{{ i18n.t('dash.title') }}</h1>
+
+    @if (notFound()) {
+      <div class="card-elevated dash-empty">
+        <p>{{ i18n.t('dash.error') }}</p>
+        <a routerLink="/apply" class="btn btn-primary">{{ i18n.t('dash.new') }}</a>
+      </div>
+    } @else if (initialLoading()) {
+      <div class="card-elevated dash-empty">
+        <span class="spinner"></span>
+      </div>
+    } @else if (pending()) {
+      <div class="card-elevated dash-pending">
+        <lib-icon-badge icon="sparkles" size="lg" />
+        <h2>{{ i18n.t('dash.pending.title') }}</h2>
+        <p class="section-lead">{{ i18n.t('dash.pending.body') }}</p>
+        <button type="button" class="btn btn-ghost" (click)="refresh()">
+          <lib-icon name="refresh" [size]="16" />
+          {{ i18n.t('dash.refresh') }}
+        </button>
+      </div>
+    } @else if (assessment.value(); as a) {
+      <div class="dash-grid">
+        <div class="card-elevated dash-summary">
+          <div class="dash-score">
+            <div
+              class="dash-score-ring"
+              [class.ring-low]="a.risk_level === 'low'"
+              [class.ring-medium]="a.risk_level === 'medium'"
+              [class.ring-high]="a.risk_level === 'high'"
+            >
+              <span class="dash-score-value ltr">{{ a.risk_score }}</span>
+              <span class="dash-score-max ltr">/ 100</span>
+            </div>
+            <span
+              class="pill"
+              [class.pill-low]="a.risk_level === 'low'"
+              [class.pill-medium]="a.risk_level === 'medium'"
+              [class.pill-high]="a.risk_level === 'high'"
+            >
+              {{ i18n.t('dash.risk_level.' + a.risk_level) }}
+            </span>
+          </div>
+
+          <div class="dash-reasoning">
+            <h3>{{ i18n.t('dash.reasoning') }}</h3>
+            <p>{{ a.reasoning }}</p>
+
+            @if (a.policy_reference) {
+              <p class="dash-policy-ref">
+                <strong>{{ i18n.t('dash.policy_reference') }}:</strong>
+                <span class="ltr">{{ a.policy_reference }}</span>
+              </p>
+            }
+          </div>
+        </div>
+
+        <div class="card-elevated dash-policies">
+          <h3>{{ i18n.t('dash.policies.title') }}</h3>
+          <p class="section-lead">{{ i18n.t('dash.policies.lead') }}</p>
+
+          @if (sortedPolicies().length === 0) {
+            <p class="field-hint">{{ i18n.t('dash.policies.empty') }}</p>
+          } @else {
+            <ol class="policy-list">
+              @for (policy of sortedPolicies(); track $index) {
+                <li class="policy-item">
+                  <div class="policy-item-head">
+                    @if (policy.source) {
+                      <span class="policy-source">{{ policy.source }}</span>
+                    }
+                    @if (policy.score !== null && policy.score !== undefined) {
+                      <span class="policy-score ltr">
+                        {{ matchPercent(policy.score) }}% {{ i18n.t('dash.policies.score') }}
+                      </span>
+                    }
+                  </div>
+                  @if (policy.score !== null && policy.score !== undefined) {
+                    <div class="policy-bar">
+                      <div
+                        class="policy-bar-fill"
+                        [style.width.%]="matchPercent(policy.score)"
+                      ></div>
+                    </div>
+                  }
+                  <p class="policy-text">{{ policy.text }}</p>
+                </li>
+              }
+            </ol>
+          }
+        </div>
+      </div>
+
+      <div class="dash-footer-actions">
+        <a routerLink="/apply" class="btn btn-ghost">{{ i18n.t('dash.new') }}</a>
+      </div>
+    }
+  </div>
+</section>

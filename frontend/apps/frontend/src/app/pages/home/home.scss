@@ -1,0 +1,175 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 72px 0 96px;
+}
+
+.hero-orb-1 {
+  width: 420px;
+  height: 420px;
+  top: -160px;
+  inset-inline-end: -120px;
+}
+
+.hero-orb-2 {
+  width: 300px;
+  height: 300px;
+  bottom: -100px;
+  inset-inline-start: -80px;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 48px;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+.hero-title {
+  font-size: clamp(34px, 5vw, 56px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 4px 0 20px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.hero-art {
+  position: relative;
+  min-height: 280px;
+}
+
+.hero-card {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: 16px 20px;
+}
+
+.hero-card-label {
+  font-size: 12px;
+  color: var(--color-muted);
+  font-weight: 600;
+}
+
+.hero-card-value {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.hero-card-1 {
+  top: 6%;
+  inset-inline-start: 4%;
+}
+
+.hero-card-2 {
+  top: 42%;
+  inset-inline-end: 2%;
+}
+
+.hero-card-3 {
+  bottom: 4%;
+  inset-inline-start: 14%;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+}
+
+@media (max-width: 900px) {
+  .hero-art {
+    min-height: 220px;
+    margin-top: 12px;
+  }
+}
+
+.section-head {
+  max-width: 640px;
+  margin-bottom: 44px;
+}
+
+.features-grid .feature-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.features-grid h3 {
+  font-size: 19px;
+  font-weight: 700;
+}
+
+/* --- timeline --- */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 760px;
+}
+
+.timeline-row {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 24px;
+}
+
+.timeline-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timeline-line {
+  width: 2px;
+  flex: 1;
+  min-height: 40px;
+  margin-top: 8px;
+  background-image: linear-gradient(
+    to bottom,
+    var(--color-primary) 0 6px,
+    transparent 6px 12px
+  );
+  background-size: 2px 12px;
+  background-repeat: repeat-y;
+}
+
+.timeline-card {
+  margin-bottom: 28px;
+}
+
+.timeline-card h3 {
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+/* --- cta --- */
+.cta-card {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 56px 32px;
+}
+
+.cta-card .section-lead {
+  max-width: 480px;
+}

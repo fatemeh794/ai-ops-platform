@@ -1,2 +1,22 @@
-<app-nx-welcome></app-nx-welcome>
-<router-outlet></router-outlet>
+<div class="shell">
+  <header class="shell-header">
+    <div class="container shell-header-inner">
+      <a routerLink="/" class="brand">{{ i18n.t('nav.brand') }}</a>
+      <nav class="shell-nav">
+        <a routerLink="/apply" class="btn btn-primary btn-sm">{{ i18n.t('nav.apply') }}</a>
+        <lib-lang-switch />
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <router-outlet />
+  </main>
+
+  <footer class="shell-footer">
+    <div class="container shell-footer-inner">
+      <span class="brand brand-sm">{{ i18n.t('nav.brand') }}</span>
+      <p class="section-lead">{{ i18n.t('footer.tagline') }}</p>
+    </div>
+  </footer>
+</div>
