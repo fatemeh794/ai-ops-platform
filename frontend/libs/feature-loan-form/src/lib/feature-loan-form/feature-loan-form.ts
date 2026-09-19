@@ -8,7 +8,7 @@ import {
   required,
   submit,
 } from '@angular/forms/signals';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { API_BASE_URL, CollateralType, LoanService } from '@frontend/data-access-loan';
 import { I18nService, Icon } from '@frontend/ui-shared';
@@ -30,7 +30,7 @@ interface LoanFormModel {
 
 @Component({
   selector: 'lib-feature-loan-form',
-  imports: [FormField, RouterLink, Icon],
+  imports: [FormField, Icon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './feature-loan-form.html',
   styleUrl: './feature-loan-form.css',

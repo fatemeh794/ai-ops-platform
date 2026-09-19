@@ -96,10 +96,7 @@
             <div class="collateral-row">
               <div class="field">
                 <label>{{ i18n.t('form.collateral.type') }}</label>
-                <select
-                  [formField]="collateral.asset_type"
-                  [disabled]="collateralTypes.isLoading()"
-                >
+                <select [formField]="collateral.asset_type">
                   <option value="" disabled>
                     {{
                       collateralTypes.isLoading()
