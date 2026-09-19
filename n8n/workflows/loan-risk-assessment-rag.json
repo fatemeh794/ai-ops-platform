@@ -1,0 +1,226 @@
+{
+  "name": "Loan Risk Assessment (RAG + Ollama)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "loan-risk-assessment",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "c9d20001-0000-4000-8000-000000000001",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -1120,
+        0
+      ],
+      "webhookId": "loan-risk-assessment-webhook"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $json.body;\n\n// Must match the exact Persian wording used in\n// rag/policies/collateral-requirements.md — the closer this query text is\n// to the policy document's own vocabulary, the better Qdrant's similarity\n// search finds the right excerpt.\nconst COLLATERAL_LABELS = {\n  sayad_check: 'چک صیادی',\n  salary_deduction: 'کسر از حقوق',\n  investment_fund: 'صندوق سرمایه\\u200cگذاری',\n  gold: 'طلا',\n  silver: 'نقره',\n  crypto: 'رمزارز',\n};\n\nconst collateralsText = (body.collaterals || [])\n  .map((c) => `${COLLATERAL_LABELS[c.type] || c.type} به ارزش ${c.value} تومان`)\n  .join('\\u060c ') || 'بدون وثیقه';\n\nconst query = `متقاضی وام با درآمد ماهانه ${body.monthly_income} تومان، درخواست وام ${body.requested_amount} تومان برای ${body.repayment_months} ماه، وثیقه: ${collateralsText}`;\n\nreturn [{ json: { query } }];"
+      },
+      "id": "c9d20001-0000-4000-8000-000000000002",
+      "name": "Build Retrieval Query",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -900,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://ollama:11434/api/embeddings",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"nomic-embed-text\",\n  \"prompt\": {{ JSON.stringify($json.query) }}\n}",
+        "options": {}
+      },
+      "id": "c9d20001-0000-4000-8000-000000000003",
+      "name": "Embed Query",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -680,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://qdrant:6333/collections/loan_policies/points/search",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"vector\": {{ JSON.stringify($json.embedding) }},\n  \"limit\": 3,\n  \"with_payload\": true\n}",
+        "options": {}
+      },
+      "id": "c9d20001-0000-4000-8000-000000000004",
+      "name": "Search Qdrant",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -460,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $('Webhook').first().json.body;\nconst matches = $json.result || [];\n\nconst policyText = matches.length\n  ? matches.map((m, i) => `[${i + 1}] ${m.payload.text}`).join('\\n\\n')\n  : 'هیچ بند مشخصی از سیاست\\u200cنامه پیدا نشد؛ بر اساس اصول کلی ریسک اعتباری قضاوت کن.';\n\n// Same canonical labels as \"Build Retrieval Query\" — keeps the collateral\n// wording the model sees consistent with the retrieved Persian policy text.\nconst COLLATERAL_LABELS = {\n  sayad_check: 'چک صیادی',\n  salary_deduction: 'کسر از حقوق',\n  investment_fund: 'صندوق سرمایه\\u200cگذاری',\n  gold: 'طلا',\n  silver: 'نقره',\n  crypto: 'رمزارز',\n};\n\nconst collateralsText = (body.collaterals || [])\n  .map((c) => `- ${COLLATERAL_LABELS[c.type] || c.type}: ${c.value} Toman`)\n  .join('\\n') || 'None';\n\nconst prompt = `You are a loan risk assessment engine for a bank's pre-assessment system. Base your decision on the bank's actual policy excerpts below \\u2014 do not invent rules that are not there.\n\nRelevant policy excerpts (retrieved from the bank's policy documents):\n${policyText}\n\nApplicant monthly income (Toman): ${body.monthly_income}\nRequested amount (Toman): ${body.requested_amount}\nRepayment period (months): ${body.repayment_months}\nCollateral offered:\n${collateralsText}\n\nRespond with ONLY a JSON object (no other text, no markdown fences) matching exactly this shape:\n{\"risk_score\": <integer 0-100, higher is riskier>, \"risk_level\": \"low\" or \"medium\" or \"high\", \"reasoning\": \"<2-3 sentence explanation in Persian, referencing which policy excerpt number(s) you used>\", \"policy_reference\": \"<the excerpt number(s) you used, e.g. '[1], [2]', or null if none were relevant>\"}`;\n\nreturn [\n  {\n    json: {\n      model: 'llama3.2:3b',\n      format: 'json',\n      stream: false,\n      prompt,\n    },\n  },\n];"
+      },
+      "id": "c9d20001-0000-4000-8000-000000000005",
+      "name": "Build Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -240,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://ollama:11434/api/generate",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "c9d20001-0000-4000-8000-000000000006",
+      "name": "Call Ollama",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -20,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const webhookData = $('Webhook').first().json.body;\nconst aiRaw = $input.first().json.response;\nconst qdrantMatches = $('Search Qdrant').first().json.result || [];\n\nlet parsed;\ntry {\n  parsed = JSON.parse(aiRaw);\n} catch (e) {\n  const match = String(aiRaw).match(/\\{[\\s\\S]*\\}/);\n  parsed = match\n    ? JSON.parse(match[0])\n    : {\n        risk_score: 50,\n        risk_level: 'medium',\n        reasoning: 'AI response could not be parsed automatically; defaulted to medium risk for manual review.',\n        policy_reference: null,\n      };\n}\n\nconst retrievedPolicies = qdrantMatches.map((m) => ({\n  text: m.payload.text,\n  source: m.payload.source || null,\n  score: m.score,\n}));\n\nreturn [\n  {\n    json: {\n      application_id: webhookData.application_id,\n      risk_score: parsed.risk_score,\n      risk_level: parsed.risk_level,\n      reasoning: parsed.reasoning,\n      policy_reference: parsed.policy_reference ?? null,\n      retrieved_policies: retrievedPolicies,\n    },\n  },\n];"
+      },
+      "id": "c9d20001-0000-4000-8000-000000000007",
+      "name": "Parse AI Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        200,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://backend:8000/api/webhooks/n8n/risk-assessment/",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-N8N-SECRET",
+              "value": "change-me-secret"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "c9d20001-0000-4000-8000-000000000008",
+      "name": "Send Result to Backend",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        420,
+        0
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Build Retrieval Query",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Retrieval Query": {
+      "main": [
+        [
+          {
+            "node": "Embed Query",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embed Query": {
+      "main": [
+        [
+          {
+            "node": "Search Qdrant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search Qdrant": {
+      "main": [
+        [
+          {
+            "node": "Build Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Prompt": {
+      "main": [
+        [
+          {
+            "node": "Call Ollama",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Ollama": {
+      "main": [
+        [
+          {
+            "node": "Parse AI Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse AI Response": {
+      "main": [
+        [
+          {
+            "node": "Send Result to Backend",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}

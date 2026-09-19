@@ -1,0 +1,99 @@
+{
+  "name": "Loan Risk Assessment (Ollama)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "loan-risk-assessment",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "b7e10001-0000-4000-8000-000000000001",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [-680, 0],
+      "webhookId": "loan-risk-assessment-webhook"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $json.body;\n\nconst collateralsText = (body.collaterals || [])\n  .map((c) => `- ${c.type}: ${c.value} Toman`)\n  .join('\\n') || 'None';\n\nconst prompt = `You are a loan risk assessment engine for a bank's pre-assessment system.\n\nApplicant monthly income (Toman): ${body.monthly_income}\nRequested amount (Toman): ${body.requested_amount}\nRepayment period (months): ${body.repayment_months}\nCollateral offered:\n${collateralsText}\n\nAnalyze the debt-to-income ratio and collateral coverage, then respond with ONLY a JSON object (no other text, no markdown fences) matching exactly this shape:\n{\"risk_score\": <integer 0-100, higher is riskier>, \"risk_level\": \"low\" or \"medium\" or \"high\", \"reasoning\": \"<2-3 sentence explanation in Persian>\", \"policy_reference\": \"<short policy note or null>\"}`;\n\nreturn [\n  {\n    json: {\n      model: 'llama3.2:3b',\n      format: 'json',\n      stream: false,\n      prompt,\n    },\n  },\n];"
+      },
+      "id": "b7e10001-0000-4000-8000-000000000002",
+      "name": "Build Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-460, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://ollama:11434/api/generate",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "b7e10001-0000-4000-8000-000000000003",
+      "name": "Call Ollama",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [-240, 0]
+    },
+    {
+      "parameters": {
+        "jsCode": "const webhookData = $('Webhook').first().json.body;\nconst aiRaw = $input.first().json.response;\n\nlet parsed;\ntry {\n  parsed = JSON.parse(aiRaw);\n} catch (e) {\n  const match = String(aiRaw).match(/\\{[\\s\\S]*\\}/);\n  parsed = match\n    ? JSON.parse(match[0])\n    : {\n        risk_score: 50,\n        risk_level: 'medium',\n        reasoning: 'AI response could not be parsed automatically; defaulted to medium risk for manual review.',\n        policy_reference: null,\n      };\n}\n\nreturn [\n  {\n    json: {\n      application_id: webhookData.application_id,\n      risk_score: parsed.risk_score,\n      risk_level: parsed.risk_level,\n      reasoning: parsed.reasoning,\n      policy_reference: parsed.policy_reference ?? null,\n    },\n  },\n];"
+      },
+      "id": "b7e10001-0000-4000-8000-000000000004",
+      "name": "Parse AI Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-20, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://backend:8000/api/webhooks/n8n/risk-assessment/",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-N8N-SECRET",
+              "value": "change-me-secret"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "b7e10001-0000-4000-8000-000000000005",
+      "name": "Send Result to Backend",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [200, 0]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [[{ "node": "Build Prompt", "type": "main", "index": 0 }]]
+    },
+    "Build Prompt": {
+      "main": [[{ "node": "Call Ollama", "type": "main", "index": 0 }]]
+    },
+    "Call Ollama": {
+      "main": [[{ "node": "Parse AI Response", "type": "main", "index": 0 }]]
+    },
+    "Parse AI Response": {
+      "main": [
+        [{ "node": "Send Result to Backend", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}
