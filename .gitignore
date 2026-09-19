@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+
+# Node / Nx
+node_modules/
+dist/
+.nx/cache/
+.nx/workspace-data/
+
+# Editors
+.vscode/
+.idea/
