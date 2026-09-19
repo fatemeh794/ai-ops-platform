@@ -1,0 +1,512 @@
+{
+  "frontend/apps/frontend": {
+    "root": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "name": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "$schema": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "projectType": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "prefix": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "sourceRoot": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "tags": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.executor": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.outputs.0": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.outputs": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.defaultConfiguration": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.outputPath": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.browser": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.tsConfig": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.inlineStyleLanguage": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.assets.0": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.assets": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.styles.0": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.styles": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.server": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.ssr": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.outputMode": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.configurations.production.budgets.0": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.configurations.production.budgets.1": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.configurations.production.budgets": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.configurations.production.outputHashing": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.configurations.production": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.configurations.development.optimization": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.configurations.development.extractLicenses": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.configurations.development.sourceMap": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.configurations.development": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.configurations": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.continuous": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.executor": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.defaultConfiguration": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations.production.buildTarget": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations.production": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations.development.buildTarget": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations.development": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint.executor": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.executor": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options.watch": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve-static": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve-static.continuous": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve-static.executor": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve-static.options.buildTarget": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve-static.options.staticFilePath": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve-static.options.spa": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve-static.options": [
+      "frontend/apps/frontend/project.json",
+      "nx/core/project-json"
+    ]
+  },
+  "frontend/libs/data-access-loan": {
+    "root": [
+      "frontend/libs/data-access-loan/project.json",
+      "nx/core/project-json"
+    ],
+    "name": [
+      "frontend/libs/data-access-loan/project.json",
+      "nx/core/project-json"
+    ],
+    "$schema": [
+      "frontend/libs/data-access-loan/project.json",
+      "nx/core/project-json"
+    ],
+    "sourceRoot": [
+      "frontend/libs/data-access-loan/project.json",
+      "nx/core/project-json"
+    ],
+    "prefix": [
+      "frontend/libs/data-access-loan/project.json",
+      "nx/core/project-json"
+    ],
+    "projectType": [
+      "frontend/libs/data-access-loan/project.json",
+      "nx/core/project-json"
+    ],
+    "tags": [
+      "frontend/libs/data-access-loan/project.json",
+      "nx/core/project-json"
+    ],
+    "targets": [
+      "frontend/libs/data-access-loan/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test": [
+      "frontend/libs/data-access-loan/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.executor": [
+      "frontend/libs/data-access-loan/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.outputs.0": [
+      "frontend/libs/data-access-loan/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.outputs": [
+      "frontend/libs/data-access-loan/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options.jestConfig": [
+      "frontend/libs/data-access-loan/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options.tsConfig": [
+      "frontend/libs/data-access-loan/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options": [
+      "frontend/libs/data-access-loan/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint": [
+      "frontend/libs/data-access-loan/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint.executor": [
+      "frontend/libs/data-access-loan/project.json",
+      "nx/core/project-json"
+    ]
+  },
+  "frontend/libs/feature-loan-dashboard": {
+    "root": [
+      "frontend/libs/feature-loan-dashboard/project.json",
+      "nx/core/project-json"
+    ],
+    "name": [
+      "frontend/libs/feature-loan-dashboard/project.json",
+      "nx/core/project-json"
+    ],
+    "$schema": [
+      "frontend/libs/feature-loan-dashboard/project.json",
+      "nx/core/project-json"
+    ],
+    "sourceRoot": [
+      "frontend/libs/feature-loan-dashboard/project.json",
+      "nx/core/project-json"
+    ],
+    "prefix": [
+      "frontend/libs/feature-loan-dashboard/project.json",
+      "nx/core/project-json"
+    ],
+    "projectType": [
+      "frontend/libs/feature-loan-dashboard/project.json",
+      "nx/core/project-json"
+    ],
+    "tags": [
+      "frontend/libs/feature-loan-dashboard/project.json",
+      "nx/core/project-json"
+    ],
+    "targets": [
+      "frontend/libs/feature-loan-dashboard/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test": [
+      "frontend/libs/feature-loan-dashboard/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.executor": [
+      "frontend/libs/feature-loan-dashboard/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.outputs.0": [
+      "frontend/libs/feature-loan-dashboard/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.outputs": [
+      "frontend/libs/feature-loan-dashboard/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options.jestConfig": [
+      "frontend/libs/feature-loan-dashboard/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options.tsConfig": [
+      "frontend/libs/feature-loan-dashboard/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options": [
+      "frontend/libs/feature-loan-dashboard/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint": [
+      "frontend/libs/feature-loan-dashboard/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint.executor": [
+      "frontend/libs/feature-loan-dashboard/project.json",
+      "nx/core/project-json"
+    ]
+  },
+  "frontend/libs/feature-loan-form": {
+    "root": [
+      "frontend/libs/feature-loan-form/project.json",
+      "nx/core/project-json"
+    ],
+    "name": [
+      "frontend/libs/feature-loan-form/project.json",
+      "nx/core/project-json"
+    ],
+    "$schema": [
+      "frontend/libs/feature-loan-form/project.json",
+      "nx/core/project-json"
+    ],
+    "sourceRoot": [
+      "frontend/libs/feature-loan-form/project.json",
+      "nx/core/project-json"
+    ],
+    "prefix": [
+      "frontend/libs/feature-loan-form/project.json",
+      "nx/core/project-json"
+    ],
+    "projectType": [
+      "frontend/libs/feature-loan-form/project.json",
+      "nx/core/project-json"
+    ],
+    "tags": [
+      "frontend/libs/feature-loan-form/project.json",
+      "nx/core/project-json"
+    ],
+    "targets": [
+      "frontend/libs/feature-loan-form/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test": [
+      "frontend/libs/feature-loan-form/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.executor": [
+      "frontend/libs/feature-loan-form/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.outputs.0": [
+      "frontend/libs/feature-loan-form/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.outputs": [
+      "frontend/libs/feature-loan-form/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options.jestConfig": [
+      "frontend/libs/feature-loan-form/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options.tsConfig": [
+      "frontend/libs/feature-loan-form/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options": [
+      "frontend/libs/feature-loan-form/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint": [
+      "frontend/libs/feature-loan-form/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint.executor": [
+      "frontend/libs/feature-loan-form/project.json",
+      "nx/core/project-json"
+    ]
+  },
+  "frontend/libs/ui-shared": {
+    "root": [
+      "frontend/libs/ui-shared/project.json",
+      "nx/core/project-json"
+    ],
+    "name": [
+      "frontend/libs/ui-shared/project.json",
+      "nx/core/project-json"
+    ],
+    "$schema": [
+      "frontend/libs/ui-shared/project.json",
+      "nx/core/project-json"
+    ],
+    "sourceRoot": [
+      "frontend/libs/ui-shared/project.json",
+      "nx/core/project-json"
+    ],
+    "prefix": [
+      "frontend/libs/ui-shared/project.json",
+      "nx/core/project-json"
+    ],
+    "projectType": [
+      "frontend/libs/ui-shared/project.json",
+      "nx/core/project-json"
+    ],
+    "tags": [
+      "frontend/libs/ui-shared/project.json",
+      "nx/core/project-json"
+    ],
+    "targets": [
+      "frontend/libs/ui-shared/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test": [
+      "frontend/libs/ui-shared/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.executor": [
+      "frontend/libs/ui-shared/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.outputs.0": [
+      "frontend/libs/ui-shared/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.outputs": [
+      "frontend/libs/ui-shared/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options.jestConfig": [
+      "frontend/libs/ui-shared/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options.tsConfig": [
+      "frontend/libs/ui-shared/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options": [
+      "frontend/libs/ui-shared/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint": [
+      "frontend/libs/ui-shared/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint.executor": [
+      "frontend/libs/ui-shared/project.json",
+      "nx/core/project-json"
+    ]
+  }
+}

@@ -1,0 +1,257 @@
+{
+  "nodes": {
+    "feature-loan-dashboard": {
+      "name": "feature-loan-dashboard",
+      "type": "lib",
+      "data": {
+        "root": "frontend/libs/feature-loan-dashboard",
+        "name": "feature-loan-dashboard",
+        "$schema": "../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/feature-loan-dashboard/src",
+        "prefix": "lib",
+        "projectType": "library",
+        "tags": [],
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "jestConfig": "libs/feature-loan-dashboard/jest.config.cts",
+              "tsConfig": "libs/feature-loan-dashboard/tsconfig.spec.json"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "configurations": {},
+            "options": {},
+            "parallelism": true
+          }
+        },
+        "implicitDependencies": []
+      }
+    },
+    "feature-loan-form": {
+      "name": "feature-loan-form",
+      "type": "lib",
+      "data": {
+        "root": "frontend/libs/feature-loan-form",
+        "name": "feature-loan-form",
+        "$schema": "../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/feature-loan-form/src",
+        "prefix": "lib",
+        "projectType": "library",
+        "tags": [],
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "jestConfig": "libs/feature-loan-form/jest.config.cts",
+              "tsConfig": "libs/feature-loan-form/tsconfig.spec.json"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "configurations": {},
+            "options": {},
+            "parallelism": true
+          }
+        },
+        "implicitDependencies": []
+      }
+    },
+    "data-access-loan": {
+      "name": "data-access-loan",
+      "type": "lib",
+      "data": {
+        "root": "frontend/libs/data-access-loan",
+        "name": "data-access-loan",
+        "$schema": "../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/data-access-loan/src",
+        "prefix": "lib",
+        "projectType": "library",
+        "tags": [],
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "jestConfig": "libs/data-access-loan/jest.config.cts",
+              "tsConfig": "libs/data-access-loan/tsconfig.spec.json"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "configurations": {},
+            "options": {},
+            "parallelism": true
+          }
+        },
+        "implicitDependencies": []
+      }
+    },
+    "ui-shared": {
+      "name": "ui-shared",
+      "type": "lib",
+      "data": {
+        "root": "frontend/libs/ui-shared",
+        "name": "ui-shared",
+        "$schema": "../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/ui-shared/src",
+        "prefix": "lib",
+        "projectType": "library",
+        "tags": [],
+        "targets": {
+          "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "jestConfig": "libs/ui-shared/jest.config.cts",
+              "tsConfig": "libs/ui-shared/tsconfig.spec.json"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "configurations": {},
+            "options": {},
+            "parallelism": true
+          }
+        },
+        "implicitDependencies": []
+      }
+    },
+    "frontend": {
+      "name": "frontend",
+      "type": "app",
+      "data": {
+        "root": "frontend/apps/frontend",
+        "name": "frontend",
+        "$schema": "../../node_modules/nx/schemas/project-schema.json",
+        "projectType": "application",
+        "prefix": "app",
+        "sourceRoot": "apps/frontend/src",
+        "tags": [],
+        "targets": {
+          "build": {
+            "executor": "@angular/build:application",
+            "outputs": [
+              "{options.outputPath}"
+            ],
+            "defaultConfiguration": "production",
+            "options": {
+              "outputPath": "dist/apps/frontend",
+              "browser": "apps/frontend/src/main.ts",
+              "tsConfig": "apps/frontend/tsconfig.app.json",
+              "inlineStyleLanguage": "scss",
+              "assets": [
+                {
+                  "glob": "**/*",
+                  "input": "apps/frontend/public"
+                }
+              ],
+              "styles": [
+                "apps/frontend/src/styles.scss"
+              ],
+              "server": "apps/frontend/src/main.server.ts",
+              "ssr": {
+                "entry": "apps/frontend/src/server.ts"
+              },
+              "outputMode": "server"
+            },
+            "configurations": {
+              "production": {
+                "budgets": [
+                  {
+                    "type": "initial",
+                    "maximumWarning": "500kb",
+                    "maximumError": "1mb"
+                  },
+                  {
+                    "type": "anyComponentStyle",
+                    "maximumWarning": "4kb",
+                    "maximumError": "8kb"
+                  }
+                ],
+                "outputHashing": "all"
+              },
+              "development": {
+                "optimization": false,
+                "extractLicenses": false,
+                "sourceMap": true
+              }
+            },
+            "parallelism": true
+          },
+          "serve": {
+            "continuous": true,
+            "executor": "@angular/build:dev-server",
+            "defaultConfiguration": "development",
+            "configurations": {
+              "production": {
+                "buildTarget": "frontend:build:production"
+              },
+              "development": {
+                "buildTarget": "frontend:build:development"
+              }
+            },
+            "options": {},
+            "parallelism": true
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "configurations": {},
+            "options": {},
+            "parallelism": true
+          },
+          "test": {
+            "executor": "@angular/build:unit-test",
+            "options": {
+              "watch": false
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "serve-static": {
+            "continuous": true,
+            "executor": "@nx/web:file-server",
+            "options": {
+              "buildTarget": "frontend:build",
+              "staticFilePath": "dist/apps/frontend/browser",
+              "spa": true
+            },
+            "configurations": {},
+            "parallelism": true
+          }
+        },
+        "implicitDependencies": []
+      }
+    }
+  },
+  "externalNodes": {},
+  "dependencies": {
+    "feature-loan-dashboard": [],
+    "feature-loan-form": [],
+    "data-access-loan": [],
+    "ui-shared": [],
+    "frontend": []
+  },
+  "version": "6.0",
+  "errors": [],
+  "computedAt": 1789244360748
+}

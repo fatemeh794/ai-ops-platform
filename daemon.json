@@ -1,0 +1,7 @@
+{
+  "registry-mirrors": [
+    "https://mirror-docker.runflare.com",
+    "https://docker.arvancloud.ir",
+    "https://docker.mobinhost.com"
+  ]
+}

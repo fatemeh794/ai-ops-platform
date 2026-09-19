@@ -1,0 +1,27 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "bundler",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "strict": false,
+    "paths": {
+      "@frontend/data-access-loan": ["./libs/data-access-loan/src/index.ts"],
+      "@frontend/ui-shared": ["./libs/ui-shared/src/index.ts"],
+      "@frontend/feature-loan-form": ["./libs/feature-loan-form/src/index.ts"],
+      "@frontend/feature-loan-dashboard": [
+        "./libs/feature-loan-dashboard/src/index.ts"
+      ]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

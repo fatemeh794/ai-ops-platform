@@ -1,0 +1,363 @@
+{
+  "version": "6.0",
+  "nxVersion": "23.2.1",
+  "pathMappings": {},
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "projectFileMap": {
+      "feature-loan-form": [
+        {
+          "file": "frontend/libs/feature-loan-form/README.md",
+          "hash": "1218578154025174079"
+        },
+        {
+          "file": "frontend/libs/feature-loan-form/eslint.config.mjs",
+          "hash": "11597483048386829367"
+        },
+        {
+          "file": "frontend/libs/feature-loan-form/jest.config.cts",
+          "hash": "15224976213991682563"
+        },
+        {
+          "file": "frontend/libs/feature-loan-form/project.json",
+          "hash": "2884140598653916574"
+        },
+        {
+          "file": "frontend/libs/feature-loan-form/src/index.ts",
+          "hash": "11702313502367216027"
+        },
+        {
+          "file": "frontend/libs/feature-loan-form/src/lib/feature-loan-form/feature-loan-form.css",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "frontend/libs/feature-loan-form/src/lib/feature-loan-form/feature-loan-form.html",
+          "hash": "447679521790111471"
+        },
+        {
+          "file": "frontend/libs/feature-loan-form/src/lib/feature-loan-form/feature-loan-form.spec.ts",
+          "hash": "6673517389091621758"
+        },
+        {
+          "file": "frontend/libs/feature-loan-form/src/lib/feature-loan-form/feature-loan-form.ts",
+          "hash": "15307623728270216394"
+        },
+        {
+          "file": "frontend/libs/feature-loan-form/src/test-setup.ts",
+          "hash": "13317557134094625390"
+        },
+        {
+          "file": "frontend/libs/feature-loan-form/tsconfig.json",
+          "hash": "11674144746894380063"
+        },
+        {
+          "file": "frontend/libs/feature-loan-form/tsconfig.lib.json",
+          "hash": "6521222695367069647"
+        },
+        {
+          "file": "frontend/libs/feature-loan-form/tsconfig.spec.json",
+          "hash": "5331518322626158299"
+        }
+      ],
+      "data-access-loan": [
+        {
+          "file": "frontend/libs/data-access-loan/README.md",
+          "hash": "10185477112446085313"
+        },
+        {
+          "file": "frontend/libs/data-access-loan/eslint.config.mjs",
+          "hash": "11597483048386829367"
+        },
+        {
+          "file": "frontend/libs/data-access-loan/jest.config.cts",
+          "hash": "18088242059090997695"
+        },
+        {
+          "file": "frontend/libs/data-access-loan/project.json",
+          "hash": "9745111437625465185"
+        },
+        {
+          "file": "frontend/libs/data-access-loan/src/index.ts",
+          "hash": "9829036175330631676"
+        },
+        {
+          "file": "frontend/libs/data-access-loan/src/lib/data-access-loan/data-access-loan.css",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "frontend/libs/data-access-loan/src/lib/data-access-loan/data-access-loan.html",
+          "hash": "3901167741655231522"
+        },
+        {
+          "file": "frontend/libs/data-access-loan/src/lib/data-access-loan/data-access-loan.spec.ts",
+          "hash": "7489481269904285135"
+        },
+        {
+          "file": "frontend/libs/data-access-loan/src/lib/data-access-loan/data-access-loan.ts",
+          "hash": "13991579234141906673"
+        },
+        {
+          "file": "frontend/libs/data-access-loan/src/test-setup.ts",
+          "hash": "13317557134094625390"
+        },
+        {
+          "file": "frontend/libs/data-access-loan/tsconfig.json",
+          "hash": "11674144746894380063"
+        },
+        {
+          "file": "frontend/libs/data-access-loan/tsconfig.lib.json",
+          "hash": "6521222695367069647"
+        },
+        {
+          "file": "frontend/libs/data-access-loan/tsconfig.spec.json",
+          "hash": "5331518322626158299"
+        }
+      ],
+      "ui-shared": [
+        {
+          "file": "frontend/libs/ui-shared/README.md",
+          "hash": "785900853325652607"
+        },
+        {
+          "file": "frontend/libs/ui-shared/eslint.config.mjs",
+          "hash": "11597483048386829367"
+        },
+        {
+          "file": "frontend/libs/ui-shared/jest.config.cts",
+          "hash": "7069195595095381505"
+        },
+        {
+          "file": "frontend/libs/ui-shared/project.json",
+          "hash": "8967804268649458187"
+        },
+        {
+          "file": "frontend/libs/ui-shared/src/index.ts",
+          "hash": "11082455496088683658"
+        },
+        {
+          "file": "frontend/libs/ui-shared/src/lib/ui-shared/ui-shared.css",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "frontend/libs/ui-shared/src/lib/ui-shared/ui-shared.html",
+          "hash": "1622478381430185017"
+        },
+        {
+          "file": "frontend/libs/ui-shared/src/lib/ui-shared/ui-shared.spec.ts",
+          "hash": "4329337096619819340"
+        },
+        {
+          "file": "frontend/libs/ui-shared/src/lib/ui-shared/ui-shared.ts",
+          "hash": "1050773771179690488"
+        },
+        {
+          "file": "frontend/libs/ui-shared/src/test-setup.ts",
+          "hash": "13317557134094625390"
+        },
+        {
+          "file": "frontend/libs/ui-shared/tsconfig.json",
+          "hash": "11674144746894380063"
+        },
+        {
+          "file": "frontend/libs/ui-shared/tsconfig.lib.json",
+          "hash": "6521222695367069647"
+        },
+        {
+          "file": "frontend/libs/ui-shared/tsconfig.spec.json",
+          "hash": "5331518322626158299"
+        }
+      ],
+      "frontend": [
+        {
+          "file": "frontend/apps/frontend/eslint.config.mjs",
+          "hash": "11999635802406141026"
+        },
+        {
+          "file": "frontend/apps/frontend/project.json",
+          "hash": "8998075517165340620"
+        },
+        {
+          "file": "frontend/apps/frontend/public/favicon.ico",
+          "hash": "9303420814833116677"
+        },
+        {
+          "file": "frontend/apps/frontend/src/app/app.config.server.ts",
+          "hash": "16664769899172877666"
+        },
+        {
+          "file": "frontend/apps/frontend/src/app/app.config.ts",
+          "hash": "2705505458140564383"
+        },
+        {
+          "file": "frontend/apps/frontend/src/app/app.html",
+          "hash": "11987652264972370457"
+        },
+        {
+          "file": "frontend/apps/frontend/src/app/app.routes.server.ts",
+          "hash": "16960858348243221237"
+        },
+        {
+          "file": "frontend/apps/frontend/src/app/app.routes.ts",
+          "hash": "6185150965714414910"
+        },
+        {
+          "file": "frontend/apps/frontend/src/app/app.scss",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "frontend/apps/frontend/src/app/app.spec.ts",
+          "hash": "11409900593190692557"
+        },
+        {
+          "file": "frontend/apps/frontend/src/app/app.ts",
+          "hash": "11833690593705296219"
+        },
+        {
+          "file": "frontend/apps/frontend/src/app/nx-welcome.ts",
+          "hash": "9600463589961739065"
+        },
+        {
+          "file": "frontend/apps/frontend/src/index.html",
+          "hash": "11391083900669202"
+        },
+        {
+          "file": "frontend/apps/frontend/src/main.server.ts",
+          "hash": "2790221776171602446"
+        },
+        {
+          "file": "frontend/apps/frontend/src/main.ts",
+          "hash": "3314327030169821486"
+        },
+        {
+          "file": "frontend/apps/frontend/src/server.ts",
+          "hash": "4501044531871950503"
+        },
+        {
+          "file": "frontend/apps/frontend/src/styles.scss",
+          "hash": "5195668842064076916"
+        },
+        {
+          "file": "frontend/apps/frontend/tsconfig.app.json",
+          "hash": "2438757114263802077"
+        },
+        {
+          "file": "frontend/apps/frontend/tsconfig.json",
+          "hash": "12585167749280417419"
+        },
+        {
+          "file": "frontend/apps/frontend/tsconfig.spec.json",
+          "hash": "13919890687900665478"
+        }
+      ],
+      "feature-loan-dashboard": [
+        {
+          "file": "frontend/libs/feature-loan-dashboard/README.md",
+          "hash": "11994105872840284257"
+        },
+        {
+          "file": "frontend/libs/feature-loan-dashboard/eslint.config.mjs",
+          "hash": "11597483048386829367"
+        },
+        {
+          "file": "frontend/libs/feature-loan-dashboard/jest.config.cts",
+          "hash": "6572789123619721321"
+        },
+        {
+          "file": "frontend/libs/feature-loan-dashboard/project.json",
+          "hash": "4693268409292160196"
+        },
+        {
+          "file": "frontend/libs/feature-loan-dashboard/src/index.ts",
+          "hash": "3560705034304462364"
+        },
+        {
+          "file": "frontend/libs/feature-loan-dashboard/src/lib/feature-loan-dashboard/feature-loan-dashboard.css",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "frontend/libs/feature-loan-dashboard/src/lib/feature-loan-dashboard/feature-loan-dashboard.html",
+          "hash": "17433569528243223092"
+        },
+        {
+          "file": "frontend/libs/feature-loan-dashboard/src/lib/feature-loan-dashboard/feature-loan-dashboard.spec.ts",
+          "hash": "459584567294188257"
+        },
+        {
+          "file": "frontend/libs/feature-loan-dashboard/src/lib/feature-loan-dashboard/feature-loan-dashboard.ts",
+          "hash": "12510118958974085334"
+        },
+        {
+          "file": "frontend/libs/feature-loan-dashboard/src/test-setup.ts",
+          "hash": "13317557134094625390"
+        },
+        {
+          "file": "frontend/libs/feature-loan-dashboard/tsconfig.json",
+          "hash": "11674144746894380063"
+        },
+        {
+          "file": "frontend/libs/feature-loan-dashboard/tsconfig.lib.json",
+          "hash": "6521222695367069647"
+        },
+        {
+          "file": "frontend/libs/feature-loan-dashboard/tsconfig.spec.json",
+          "hash": "5331518322626158299"
+        }
+      ]
+    },
+    "nonProjectFiles": [
+      {
+        "file": "frontend/.editorconfig",
+        "hash": "5443105041930014821"
+      },
+      {
+        "file": "frontend/.gitignore",
+        "hash": "3727302800009893641"
+      },
+      {
+        "file": "frontend/.prettierignore",
+        "hash": "4806318144369935397"
+      },
+      {
+        "file": "frontend/.prettierrc",
+        "hash": "16267754514737964994"
+      },
+      {
+        "file": "frontend/.vscode/extensions.json",
+        "hash": "4637156562308165301"
+      },
+      {
+        "file": "frontend/README.md",
+        "hash": "16121040838708189504"
+      },
+      {
+        "file": "frontend/eslint.config.mjs",
+        "hash": "12926286793420397906"
+      },
+      {
+        "file": "frontend/jest.config.ts",
+        "hash": "6870352021923392442"
+      },
+      {
+        "file": "frontend/jest.preset.js",
+        "hash": "9430166341120122740"
+      },
+      {
+        "file": "frontend/nx.json",
+        "hash": "3575487110557548688"
+      },
+      {
+        "file": "frontend/package-lock.json",
+        "hash": "1523302483437001451"
+      },
+      {
+        "file": "frontend/package.json",
+        "hash": "2589926249825038997"
+      },
+      {
+        "file": "frontend/tsconfig.base.json",
+        "hash": "12550550806296670551"
+      }
+    ]
+  },
+  "externalNodesHash": "3244421341483603138"
+}
