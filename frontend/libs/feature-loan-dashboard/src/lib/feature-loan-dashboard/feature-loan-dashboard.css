@@ -194,3 +194,164 @@
 .dash-footer-actions {
   margin-top: 32px;
 }
+
+.dash-outcome {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 26px;
+  margin-bottom: 28px;
+}
+
+.dash-outcome h2 {
+  font-size: 17px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.dash-outcome p {
+  color: var(--color-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.dash-outcome-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dash-outcome.outcome-approved {
+  background: color-mix(in srgb, var(--color-secondary) 8%, var(--color-surface));
+}
+.dash-outcome.outcome-approved .dash-outcome-icon {
+  background: var(--color-secondary);
+  color: #fff;
+}
+
+.dash-outcome.outcome-review {
+  background: color-mix(in srgb, var(--color-warning) 12%, var(--color-surface));
+}
+.dash-outcome.outcome-review .dash-outcome-icon {
+  background: var(--color-warning);
+  color: #fff;
+}
+
+.dash-outcome.outcome-rejected {
+  background: color-mix(in srgb, var(--color-danger) 8%, var(--color-surface));
+}
+.dash-outcome.outcome-rejected .dash-outcome-icon {
+  background: var(--color-danger);
+  color: #fff;
+}
+
+.dash-roadmap {
+  margin-top: 28px;
+}
+
+.dash-roadmap h3 {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.dash-roadmap .section-lead {
+  margin-bottom: 20px;
+}
+
+.roadmap-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.roadmap-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  border-inline-start: 3px solid transparent;
+}
+
+.roadmap-step-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  color: #fff;
+  background: var(--color-muted);
+}
+
+.roadmap-step-title {
+  font-size: 14.5px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.roadmap-step-desc {
+  font-size: 13px;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+.roadmap-step.step-done {
+  border-inline-start-color: var(--color-secondary);
+}
+.roadmap-step.step-done .roadmap-step-icon {
+  background: var(--color-secondary);
+}
+
+.roadmap-step.step-current {
+  border-inline-start-color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 5%, var(--color-surface));
+}
+.roadmap-step.step-current .roadmap-step-icon {
+  background: var(--color-primary);
+}
+
+.roadmap-step.step-upcoming {
+  opacity: 0.55;
+}
+
+.roadmap-step.step-rejected {
+  border-inline-start-color: var(--color-danger);
+  background: color-mix(in srgb, var(--color-danger) 5%, var(--color-surface));
+}
+.roadmap-step.step-rejected .roadmap-step-icon {
+  background: var(--color-danger);
+}
+
+.roadmap-tips {
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-border);
+}
+
+.roadmap-tips h4 {
+  font-size: 14px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.roadmap-tips ul {
+  margin: 0;
+  padding-inline-start: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--color-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}

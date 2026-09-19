@@ -15,10 +15,30 @@ import {
   LoanApplicationOut,
   RiskAssessmentOut,
 } from '@frontend/data-access-loan';
-import { I18nService, Icon, IconBadge } from '@frontend/ui-shared';
+import { I18nService, Icon, IconBadge, IconName } from '@frontend/ui-shared';
 
 const POLL_INTERVAL_MS = 3000;
 const MAX_AUTO_POLLS = 10;
+
+// Derived from rag/policies/risk-tiers.md: low risk is auto-approvable,
+// medium needs a credit officer's manual review, high is rejected by
+// default. Kept as a plain mapping here (rather than another backend call)
+// since the dashboard already has `risk_level` from the assessment.
+type Outcome = 'approved' | 'review' | 'rejected';
+
+type StepState = 'done' | 'current' | 'upcoming' | 'rejected';
+
+interface RoadmapStep {
+  key: string;
+  state: StepState;
+}
+
+const STEP_ICON: Record<StepState, IconName> = {
+  done: 'check-circle',
+  current: 'clock',
+  upcoming: 'clock',
+  rejected: 'x-circle',
+};
 
 @Component({
   selector: 'lib-feature-loan-dashboard',
@@ -59,6 +79,50 @@ export class FeatureLoanDashboard {
     return [...policies].sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
   });
 
+  // low -> approved, high -> rejected, medium (or anything unexpected) ->
+  // treated as needing manual review, which is the safe default.
+  protected readonly outcome = computed<Outcome>(() => {
+    const level = this.assessment.value()?.risk_level;
+    if (level === 'low') return 'approved';
+    if (level === 'high') return 'rejected';
+    return 'review';
+  });
+
+  // The first four steps of Vency's real loan process (ثبت‌نام، درخواست
+  // وام، بررسی ضمانت، احراز هویت و اعتبارسنجی) are already behind the
+  // applicant by the time an assessment exists; what's shown after that
+  // forks on the AI's risk tier.
+  protected readonly roadmapSteps = computed<RoadmapStep[]>(() => {
+    const base: RoadmapStep[] = [
+      { key: 'register', state: 'done' },
+      { key: 'apply', state: 'done' },
+      { key: 'collateral', state: 'done' },
+      { key: 'verify', state: 'done' },
+    ];
+
+    switch (this.outcome()) {
+      case 'approved':
+        return [
+          ...base,
+          { key: 'contract', state: 'current' },
+          { key: 'disbursement', state: 'upcoming' },
+        ];
+      case 'review':
+        return [
+          ...base,
+          { key: 'manual_review', state: 'current' },
+          { key: 'decision', state: 'upcoming' },
+        ];
+      case 'rejected':
+        return [...base, { key: 'rejected', state: 'rejected' }];
+    }
+  });
+
+  // Only shown for a rejected outcome — concrete, policy-grounded actions
+  // (not generic advice): matches the levers rag/policies/collateral-
+  // requirements.md and debt-to-income.md actually score on.
+  protected readonly rejectionTips = ['coverage', 'amount', 'term'] as const;
+
   private pollCount = 0;
 
   constructor() {
@@ -89,5 +153,9 @@ export class FeatureLoanDashboard {
   protected matchPercent(score: number | null | undefined): number {
     if (score === null || score === undefined) return 0;
     return Math.round(Math.max(0, Math.min(1, score)) * 100);
+  }
+
+  protected stepIcon(state: StepState): IconName {
+    return STEP_ICON[state];
   }
 }

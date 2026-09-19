@@ -23,6 +23,30 @@
         </button>
       </div>
     } @else if (assessment.value(); as a) {
+      <div
+        class="card-elevated dash-outcome"
+        [class.outcome-approved]="outcome() === 'approved'"
+        [class.outcome-review]="outcome() === 'review'"
+        [class.outcome-rejected]="outcome() === 'rejected'"
+      >
+        <span class="dash-outcome-icon">
+          <lib-icon
+            [name]="
+              outcome() === 'approved'
+                ? 'check-circle'
+                : outcome() === 'rejected'
+                  ? 'x-circle'
+                  : 'clock'
+            "
+            [size]="26"
+          />
+        </span>
+        <div>
+          <h2>{{ i18n.t('dash.outcome.' + outcome() + '.title') }}</h2>
+          <p>{{ i18n.t('dash.outcome.' + outcome() + '.body') }}</p>
+        </div>
+      </div>
+
       <div class="dash-grid">
         <div class="card-elevated dash-summary">
           <div class="dash-score">
@@ -92,6 +116,44 @@
             </ol>
           }
         </div>
+      </div>
+
+      <div class="card-elevated dash-roadmap">
+        <h3>{{ i18n.t('dash.roadmap.title') }}</h3>
+        <p class="section-lead">{{ i18n.t('dash.roadmap.lead') }}</p>
+
+        <ol class="roadmap-list">
+          @for (step of roadmapSteps(); track step.key) {
+            <li
+              class="roadmap-step"
+              [class.step-done]="step.state === 'done'"
+              [class.step-current]="step.state === 'current'"
+              [class.step-upcoming]="step.state === 'upcoming'"
+              [class.step-rejected]="step.state === 'rejected'"
+            >
+              <span class="roadmap-step-icon">
+                <lib-icon [name]="stepIcon(step.state)" [size]="16" />
+              </span>
+              <div>
+                <p class="roadmap-step-title">{{ i18n.t('dash.roadmap.step.' + step.key) }}</p>
+                <p class="roadmap-step-desc">
+                  {{ i18n.t('dash.roadmap.step.' + step.key + '.desc') }}
+                </p>
+              </div>
+            </li>
+          }
+        </ol>
+
+        @if (outcome() === 'rejected') {
+          <div class="roadmap-tips">
+            <h4>{{ i18n.t('dash.roadmap.tips.title') }}</h4>
+            <ul>
+              @for (tip of rejectionTips; track tip) {
+                <li>{{ i18n.t('dash.roadmap.tips.' + tip) }}</li>
+              }
+            </ul>
+          </div>
+        }
       </div>
 
       <div class="dash-footer-actions">

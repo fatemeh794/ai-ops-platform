@@ -60,6 +60,9 @@ export const translations: Record<Lang, Record<string, string>> = {
     'form.collateral.value': 'Estimated value (Toman)',
     'form.collateral.remove': 'Remove',
     'form.collateral.empty': 'No collateral added — this may affect your risk score.',
+    'form.collateral.select_placeholder': 'Select a type…',
+    'form.collateral.loading_types': 'Loading types…',
+    'form.collateral.types_error': 'Could not load collateral types. Please refresh and try again.',
     'form.submit': 'Submit for assessment',
     'form.submitting': 'Submitting…',
     'form.error.required': 'This field is required',
@@ -84,6 +87,51 @@ export const translations: Record<Lang, Record<string, string>> = {
       'These are the exact bank policy excerpts the AI retrieved and grounded its answer in, ranked by similarity to your application.',
     'dash.policies.empty': 'No specific policy excerpts were matched for this application.',
     'dash.policies.score': 'match',
+
+    'dash.outcome.approved.title': "Good news — you're approved",
+    'dash.outcome.approved.body':
+      'Your risk profile meets the bank\'s automatic approval threshold. Continue to confirm your final loan terms.',
+    'dash.outcome.review.title': 'Under manual review',
+    'dash.outcome.review.body':
+      'Your application needs a closer look from a credit officer before a final decision is made.',
+    'dash.outcome.rejected.title': 'Not approved right now',
+    'dash.outcome.rejected.body':
+      "Your current application doesn't meet the bank's risk policy — see what you can adjust below.",
+
+    'dash.roadmap.title': 'Your loan journey',
+    'dash.roadmap.lead': 'Where this application stands, and what happens next.',
+    'dash.roadmap.step.register': 'Registration',
+    'dash.roadmap.step.register.desc': 'Your account was created.',
+    'dash.roadmap.step.apply': 'Loan application',
+    'dash.roadmap.step.apply.desc': 'You submitted your loan request.',
+    'dash.roadmap.step.collateral': 'Collateral review',
+    'dash.roadmap.step.collateral.desc':
+      'Your offered collateral was checked against the required coverage ratio.',
+    'dash.roadmap.step.verify': 'Identity & risk verification',
+    'dash.roadmap.step.verify.desc':
+      'Your identity and risk profile were assessed by the AI engine.',
+    'dash.roadmap.step.contract': 'Confirm & sign',
+    'dash.roadmap.step.contract.desc': 'Review the final terms and sign your loan agreement.',
+    'dash.roadmap.step.disbursement': 'Receive your loan',
+    'dash.roadmap.step.disbursement.desc':
+      'Funds are transferred to your account once the contract is signed.',
+    'dash.roadmap.step.manual_review': 'Manual review',
+    'dash.roadmap.step.manual_review.desc':
+      'A credit officer is reviewing your application — this typically takes 1–2 business days.',
+    'dash.roadmap.step.decision': 'Final decision',
+    'dash.roadmap.step.decision.desc':
+      "You'll be notified by SMS/email once the credit officer reaches a decision.",
+    'dash.roadmap.step.rejected': 'Application rejected',
+    'dash.roadmap.step.rejected.desc':
+      "Based on the current details, this application doesn't meet the bank's risk policy.",
+    'dash.roadmap.tips.title': 'What you can do next',
+    'dash.roadmap.tips.coverage':
+      "Increase your collateral's coverage ratio — gold and silver need at least 130% of the loan amount, crypto at least 150%.",
+    'dash.roadmap.tips.amount':
+      'Request a smaller amount, or extend the repayment period — both lower your monthly installment relative to income.',
+    'dash.roadmap.tips.term':
+      'Consider a lower-risk collateral type, such as a Sayad-registered check or salary deduction — both need only 100% coverage.',
+
     'dash.new': 'Start a new application',
     'dash.error': 'We could not find this application.',
   },
@@ -146,6 +194,9 @@ export const translations: Record<Lang, Record<string, string>> = {
     'form.collateral.value': 'ارزش تخمینی (تومان)',
     'form.collateral.remove': 'حذف',
     'form.collateral.empty': 'وثیقه‌ای اضافه نشده — این می‌تواند روی امتیاز ریسک شما تأثیر بگذارد.',
+    'form.collateral.select_placeholder': 'یک نوع انتخاب کنید…',
+    'form.collateral.loading_types': 'در حال بارگذاری…',
+    'form.collateral.types_error': 'بارگذاری انواع وثیقه ممکن نشد. لطفاً صفحه را رفرش کنید.',
     'form.submit': 'ثبت برای ارزیابی',
     'form.submitting': 'در حال ثبت…',
     'form.error.required': 'این فیلد الزامی است',
@@ -170,6 +221,50 @@ export const translations: Record<Lang, Record<string, string>> = {
       'این‌ها دقیقاً همان بندهای سیاست بانک هستند که هوش مصنوعی بازیابی کرده و پاسخ خود را بر اساس آن‌ها بنا نهاده، به ترتیب میزان تطابق با درخواست شما.',
     'dash.policies.empty': 'برای این درخواست، بند خاصی از سیاست پیدا نشد.',
     'dash.policies.score': 'تطابق',
+
+    'dash.outcome.approved.title': 'خبر خوب — وام شما تأیید شد',
+    'dash.outcome.approved.body':
+      'پروفایل ریسک شما به آستانهٔ تأیید خودکار بانک رسیده است. برای تأیید شرایط نهایی وام ادامه دهید.',
+    'dash.outcome.review.title': 'در حال بررسی دستی',
+    'dash.outcome.review.body':
+      'درخواست شما نیاز به بررسی دقیق‌تر توسط یک کارشناس اعتباری دارد تا تصمیم نهایی گرفته شود.',
+    'dash.outcome.rejected.title': 'در حال حاضر تأیید نشد',
+    'dash.outcome.rejected.body':
+      'درخواست فعلی شما با سیاست ریسک بانک مطابقت ندارد — پیشنهادهای زیر را ببینید.',
+
+    'dash.roadmap.title': 'مسیر وام شما',
+    'dash.roadmap.lead': 'این درخواست الان کجاست، و مرحلهٔ بعدی چیست.',
+    'dash.roadmap.step.register': 'ثبت‌نام',
+    'dash.roadmap.step.register.desc': 'حساب کاربری شما ایجاد شد.',
+    'dash.roadmap.step.apply': 'درخواست وام',
+    'dash.roadmap.step.apply.desc': 'درخواست وام خود را ثبت کردید.',
+    'dash.roadmap.step.collateral': 'بررسی ضمانت',
+    'dash.roadmap.step.collateral.desc': 'وثیقهٔ ارائه‌شده با نسبت پوشش لازم بررسی شد.',
+    'dash.roadmap.step.verify': 'احراز هویت و اعتبارسنجی',
+    'dash.roadmap.step.verify.desc':
+      'هویت و پروفایل ریسک شما توسط موتور هوش مصنوعی ارزیابی شد.',
+    'dash.roadmap.step.contract': 'تأیید و امضای قرارداد',
+    'dash.roadmap.step.contract.desc': 'شرایط نهایی را بررسی و قرارداد وام را امضا کنید.',
+    'dash.roadmap.step.disbursement': 'دریافت وام',
+    'dash.roadmap.step.disbursement.desc':
+      'پس از امضای قرارداد، مبلغ وام به حساب شما واریز می‌شود.',
+    'dash.roadmap.step.manual_review': 'بررسی دستی',
+    'dash.roadmap.step.manual_review.desc':
+      'یک کارشناس اعتباری در حال بررسی درخواست شماست — معمولاً ۱ تا ۲ روز کاری طول می‌کشد.',
+    'dash.roadmap.step.decision': 'تصمیم نهایی',
+    'dash.roadmap.step.decision.desc':
+      'پس از تصمیم‌گیری کارشناس اعتباری، از طریق پیامک یا ایمیل مطلع خواهید شد.',
+    'dash.roadmap.step.rejected': 'درخواست رد شد',
+    'dash.roadmap.step.rejected.desc':
+      'بر اساس اطلاعات فعلی، این درخواست با سیاست ریسک بانک مطابقت ندارد.',
+    'dash.roadmap.tips.title': 'چه کاری می‌توانید انجام دهید',
+    'dash.roadmap.tips.coverage':
+      'نسبت پوشش وثیقهٔ خود را افزایش دهید — طلا و نقره حداقل به ۱۳۰٪ و رمزارز به ۱۵۰٪ مبلغ وام نیاز دارند.',
+    'dash.roadmap.tips.amount':
+      'مبلغ درخواستی را کاهش دهید یا مدت بازپرداخت را افزایش دهید — هر دو، قسط ماهانه را نسبت به درآمد شما پایین می‌آورند.',
+    'dash.roadmap.tips.term':
+      'نوع وثیقه‌ای با ریسک کمتر در نظر بگیرید، مثل چک صیادی یا کسر از حقوق — که فقط به ۱۰۰٪ پوشش نیاز دارند.',
+
     'dash.new': 'ثبت درخواست جدید',
     'dash.error': 'این درخواست پیدا نشد.',
   },

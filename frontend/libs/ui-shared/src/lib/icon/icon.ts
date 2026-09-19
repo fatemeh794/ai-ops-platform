@@ -10,7 +10,9 @@ export type IconName =
   | 'globe'
   | 'plus'
   | 'trash'
-  | 'refresh';
+  | 'refresh'
+  | 'x-circle'
+  | 'clock';
 
 @Component({
   selector: 'lib-icon',
@@ -137,6 +139,25 @@ export type IconName =
           />
           <path
             d="M17 4.5V8h-3.5M7 19.5V16h3.5"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        }
+        @case ('x-circle') {
+          <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8" />
+          <path
+            d="M9.3 9.3l5.4 5.4M14.7 9.3l-5.4 5.4"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+          />
+        }
+        @case ('clock') {
+          <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8" />
+          <path
+            d="M12 7.5V12l3.2 2"
             stroke="currentColor"
             stroke-width="1.8"
             stroke-linecap="round"
