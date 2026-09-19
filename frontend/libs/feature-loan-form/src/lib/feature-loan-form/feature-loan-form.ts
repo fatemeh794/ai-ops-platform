@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { httpResource } from '@angular/common/http';
 import {
   FormField,
   applyEach,
@@ -9,7 +10,7 @@ import {
 } from '@angular/forms/signals';
 import { Router, RouterLink } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
-import { LoanService } from '@frontend/data-access-loan';
+import { API_BASE_URL, CollateralType, LoanService } from '@frontend/data-access-loan';
 import { I18nService, Icon } from '@frontend/ui-shared';
 
 interface CollateralModel {
@@ -36,11 +37,20 @@ interface LoanFormModel {
 })
 export class FeatureLoanForm {
   private readonly loanService = inject(LoanService);
+  private readonly apiUrl = inject(API_BASE_URL);
   private readonly router = inject(Router);
   protected readonly i18n = inject(I18nService);
 
   protected readonly submitting = signal(false);
   protected readonly errorMessage = signal<string | null>(null);
+
+  // Server-driven collateral vocabulary (GET /collateral-types/) — the same
+  // canonical list backend/collateral_types.py validates against and the
+  // n8n RAG workflow's COLLATERAL_LABELS lookup uses, so the dropdown can
+  // never drift out of sync with what retrieval actually matches on.
+  protected readonly collateralTypes = httpResource<CollateralType[]>(
+    () => `${this.apiUrl}/collateral-types/`,
+  );
 
   // CRITICAL (per Signal Forms): never seed the model with null/undefined —
   // '' for text, 0 for numbers, [] for arrays.
@@ -79,6 +89,14 @@ export class FeatureLoanForm {
       ...m,
       collaterals: m.collaterals.filter((_, i) => i !== index),
     }));
+  }
+
+  // Language-aware label for a collateral type option — falls back to the
+  // English label if Persian is somehow missing (and vice versa).
+  protected collateralLabel(type: CollateralType): string {
+    return this.i18n.lang() === 'fa'
+      ? type.label_fa || type.label_en
+      : type.label_en || type.label_fa;
   }
 
   // Every built-in Signal Forms validator sets an error `kind` ('required',

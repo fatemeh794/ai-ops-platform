@@ -96,7 +96,24 @@
             <div class="collateral-row">
               <div class="field">
                 <label>{{ i18n.t('form.collateral.type') }}</label>
-                <input type="text" [formField]="collateral.asset_type" />
+                <select
+                  [formField]="collateral.asset_type"
+                  [disabled]="collateralTypes.isLoading()"
+                >
+                  <option value="" disabled>
+                    {{
+                      collateralTypes.isLoading()
+                        ? i18n.t('form.collateral.loading_types')
+                        : i18n.t('form.collateral.select_placeholder')
+                    }}
+                  </option>
+                  @for (type of collateralTypes.value() ?? []; track type.value) {
+                    <option [value]="type.value">{{ collateralLabel(type) }}</option>
+                  }
+                </select>
+                @if (collateralTypes.error()) {
+                  <span class="field-error">{{ i18n.t('form.collateral.types_error') }}</span>
+                }
               </div>
               <div class="field">
                 <label>{{ i18n.t('form.collateral.value') }}</label>

@@ -16,6 +16,16 @@ export interface CollateralIn {
   estimated_value: number;
 }
 
+// Mirrors backend/collateral_types.py's CollateralType enum + COLLATERAL_TYPES
+// list, served by GET /collateral-types/. `value` is what gets stored on
+// `CollateralIn.asset_type` and is also the exact code the n8n RAG workflow's
+// COLLATERAL_LABELS lookup uses — keep all three in sync.
+export interface CollateralType {
+  value: string;
+  label_fa: string;
+  label_en: string;
+}
+
 export interface LoanApplicationCreate {
   applicant_id: number;
   requested_amount: number;
