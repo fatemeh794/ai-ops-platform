@@ -1,16 +1,6 @@
 """
 Canonical collateral ("guarantee") types this system accepts.
 
-Modeled after Vency (vency.ir) — a real Iranian fintech offering instant
-loans without a traditional guarantor, backed instead by liquid collateral
-(crypto, gold, a Sayad-registered check, etc.) rather than classic bank
-collateral like real estate. Keeping this list as a single source of truth
-means the value the frontend dropdown offers, the value stored on
-`CollateralAsset.asset_type`, and the exact Persian wording the n8n RAG
-workflow uses to build its retrieval query all stay in sync — which
-matters a lot for retrieval quality: the closer the query text matches the
-policy document's own vocabulary, the better Qdrant's similarity search
-finds the right policy excerpt.
 """
 
 from enum import Enum
