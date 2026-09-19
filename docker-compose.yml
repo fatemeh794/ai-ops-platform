@@ -5,6 +5,8 @@ services:
       POSTGRES_DB: loans
       POSTGRES_USER: loans
       POSTGRES_PASSWORD: loans
+    ports:
+      - "5433:5432"   # 5432 on your machine is already taken by a native Postgres service
     volumes:
       - db_data:/var/lib/postgresql/data
 
@@ -34,15 +36,22 @@ services:
     depends_on:
       - backend
 
-  # اختیاری: مدل AI محلی و رایگان
-  # ollama:
-  #   image: ollama/ollama
-  #   ports:
-  #     - "11434:11434"
-  #   volumes:
-  #     - ollama_data:/root/.ollama
+  ollama:
+    image: ollama/ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+
+  qdrant:
+    image: qdrant/qdrant
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
 
 volumes:
   db_data:
   n8n_data:
-  # ollama_data:
+  ollama_data:
+  qdrant_data:
