@@ -24,7 +24,7 @@ def create_application(payload: schemas.LoanApplicationCreate, db: Session = Dep
         db.add(
             models.CollateralAsset(
                 application_id=application.id,
-                asset_type=c.asset_type,
+                asset_type=c.asset_type.value,
                 estimated_value=c.estimated_value,
             )
         )

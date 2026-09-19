@@ -2,6 +2,8 @@ from typing import List, Optional
 
 from pydantic import BaseModel, ConfigDict
 
+from collateral_types import CollateralType
+
 
 class ApplicantCreate(BaseModel):
     full_name: str
@@ -21,8 +23,14 @@ class ApplicantOut(BaseModel):
 
 
 class CollateralIn(BaseModel):
-    asset_type: str
+    asset_type: CollateralType
     estimated_value: float
+
+
+class CollateralTypeOut(BaseModel):
+    value: str
+    label_fa: str
+    label_en: str
 
 
 class LoanApplicationCreate(BaseModel):
@@ -42,12 +50,19 @@ class LoanApplicationOut(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
 
+class RetrievedPolicy(BaseModel):
+    text: str
+    source: Optional[str] = None
+    score: Optional[float] = None
+
+
 class RiskAssessmentCallback(BaseModel):
     application_id: int
     risk_score: int
     risk_level: str
     reasoning: str
     policy_reference: Optional[str] = None
+    retrieved_policies: List[RetrievedPolicy] = []
 
 
 class RiskAssessmentOut(BaseModel):
@@ -55,3 +70,4 @@ class RiskAssessmentOut(BaseModel):
     risk_level: Optional[str] = None
     reasoning: Optional[str] = None
     policy_reference: Optional[str] = None
+    retrieved_policies: List[RetrievedPolicy] = []

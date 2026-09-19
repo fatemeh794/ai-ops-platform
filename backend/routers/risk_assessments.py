@@ -48,9 +48,11 @@ def get_risk_assessment(application_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="not assessed yet")
 
     a = application.risk_assessment
+    raw = a.raw_ai_response or {}
     return schemas.RiskAssessmentOut(
         risk_score=a.risk_score,
         risk_level=a.risk_level,
         reasoning=a.ai_reasoning,
         policy_reference=a.policy_reference,
+        retrieved_policies=raw.get("retrieved_policies", []),
     )
