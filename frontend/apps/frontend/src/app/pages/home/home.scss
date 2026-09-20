@@ -162,6 +162,7 @@
 
 /* --- cta --- */
 .cta-card {
+  position: relative;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -172,4 +173,176 @@
 
 .cta-card .section-lead {
   max-width: 480px;
+}
+
+/* --- hero flow diagram (decorative SVG behind the floating cards) --- */
+.hero-flow {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.hero-flow-path {
+  fill: none;
+  stroke-width: 2;
+  stroke-dasharray: 6 6;
+  opacity: 0.5;
+  animation: dash-flow 1.4s linear infinite;
+}
+
+.hero-flow-src {
+  fill: var(--color-muted);
+  opacity: 0.45;
+}
+
+.hero-flow-dst {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pulse-ring 2.6s ease-in-out infinite;
+}
+
+.hero-flow-path.flow-low,
+.hero-flow-dst.flow-low {
+  stroke: var(--color-secondary);
+  fill: var(--color-secondary);
+}
+
+.hero-flow-path.flow-medium,
+.hero-flow-dst.flow-medium {
+  stroke: var(--color-warning);
+  fill: var(--color-warning);
+}
+
+.hero-flow-path.flow-high,
+.hero-flow-dst.flow-high {
+  stroke: var(--color-danger);
+  fill: var(--color-danger);
+}
+
+.hero-card {
+  z-index: 1;
+}
+
+/* --- steps section head: title + cycle diagram, side by side --- */
+.steps-head-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 56px;
+}
+
+.steps-head-row .section-head {
+  margin-bottom: 0;
+  flex: 1 1 360px;
+}
+
+@media (max-width: 860px) {
+  .steps-head-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+  }
+}
+
+/* --- process cycle (decorative, sits beside the section title) --- */
+.cycle {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  flex-shrink: 0;
+  margin: 0 auto;
+}
+
+.cycle-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px dashed var(--color-border);
+  animation: spin-slow 28s linear infinite;
+}
+
+
+
+.cycle-node {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 100px;
+  text-align: center;
+}
+
+.cycle-node span {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+/* Positioned by simple trig so the badge sits ON the ring (radius = 50%
+   of .cycle's own box), not guessed offsets: top (-90deg), and the other
+   two at +/-120deg from it (30deg and 150deg). Physical left/top on
+   purpose -- this is a self-contained decorative diagram, not part of
+   the page's RTL text flow, so it shouldn't mirror with the page. */
+.cycle-node-0 {
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cycle-node-1 {
+  top: 75%;
+  left: 93.3%;
+  transform: translate(-50%, -50%);
+}
+
+.cycle-node-2 {
+  top: 75%;
+  left: 6.7%;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 480px) {
+  .cycle {
+    display: none;
+  }
+}
+
+/* --- cta chips (scattered, floating accents on the final card) --- */
+.cta-chip {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-primary);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+}
+
+.chip-1 {
+  top: 10%;
+  inset-inline-start: 6%;
+}
+
+.chip-2 {
+  top: 14%;
+  inset-inline-end: 8%;
+}
+
+.chip-3 {
+  bottom: 12%;
+  inset-inline-end: 16%;
+}
+
+@media (max-width: 640px) {
+  .cta-chip {
+    display: none;
+  }
 }

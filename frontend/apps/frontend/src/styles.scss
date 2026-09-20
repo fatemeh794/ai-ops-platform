@@ -317,3 +317,108 @@ pre {
 html[dir='rtl'] .icon-directional {
   transform: scaleX(-1);
 }
+
+/* ============================================================
+   Motion system — small, reusable animation primitives shared by
+   the landing page's hero diagram, process cycle, and scroll
+   reveals. Kept centralized here rather than duplicated per
+   component so every animated section moves at the same "speed".
+   ============================================================ */
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes float-rotate {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--tilt, -6deg));
+  }
+  50% {
+    transform: translateY(-12px) rotate(var(--tilt, -6deg));
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-ring {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+@keyframes fade-up-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Gentle up/down drift — applied to the floating hero cards and the
+   scattered CTA chips. Each element sets its own --float-delay so they
+   don't all bob in lockstep. */
+.float {
+  animation: float 5.5s ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+.float-rotate {
+  animation: float-rotate 6.5s ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+/* Scroll reveal — paired with the `libReveal` directive, which adds
+   `is-visible` the first time the element enters the viewport. */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

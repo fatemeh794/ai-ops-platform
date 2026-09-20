@@ -16,15 +16,39 @@
     </div>
 
     <div class="hero-art">
-      <div class="hero-card hero-card-1">
+      <!-- Purely decorative: incoming applications flowing to the three
+           risk tiers the backend actually produces. -->
+      <svg
+        class="hero-flow"
+        viewBox="0 0 300 260"
+        preserveAspectRatio="xMidYMid meet"
+        aria-hidden="true"
+      >
+        @for (flow of heroFlows; track flow.to) {
+          <path class="hero-flow-path flow-{{ flow.to }}" [attr.d]="heroPath(flow.from, flow.to)" />
+        }
+        @for (flow of heroFlows; track flow.to) {
+          <circle class="hero-flow-src" cx="18" [attr.cy]="flow.from" r="4" />
+        }
+        @for (flow of heroFlows; track flow.to) {
+          <circle
+            class="hero-flow-dst flow-{{ flow.to }}"
+            cx="282"
+            [attr.cy]="heroDestY(flow.to)"
+            r="7"
+          />
+        }
+      </svg>
+
+      <div class="hero-card hero-card-1 float" style="--float-delay: 0s">
         <span class="hero-card-label">{{ i18n.t('dash.risk_level') }}</span>
         <span class="pill pill-low">{{ i18n.t('dash.risk_level.low') }}</span>
       </div>
-      <div class="hero-card hero-card-2">
+      <div class="hero-card hero-card-2 float" style="--float-delay: 0.6s">
         <span class="hero-card-label">{{ i18n.t('dash.policies.score') }}</span>
         <span class="hero-card-value ltr">92%</span>
       </div>
-      <div class="hero-card hero-card-3">
+      <div class="hero-card hero-card-3 float" style="--float-delay: 1.2s">
         <lib-icon-badge icon="shield" />
         <div>
           <span class="hero-card-label">{{ i18n.t('dash.risk_score') }}</span>
@@ -43,8 +67,8 @@
     </div>
 
     <div class="grid-3 features-grid">
-      @for (f of features; track f.key) {
-        <div class="card feature-card">
+      @for (f of features; track f.key; let i = $index) {
+        <div class="card feature-card" libReveal [style.--reveal-delay]="i * 90 + 'ms'">
           <lib-icon-badge [icon]="f.icon" />
           <h3>{{ i18n.t(f.key + '.title') }}</h3>
           <p class="section-lead">{{ i18n.t(f.key + '.body') }}</p>
@@ -56,14 +80,27 @@
 
 <section class="section steps-section" id="steps">
   <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">{{ i18n.t('steps.eyebrow') }}</span>
-      <h2 class="section-title">{{ i18n.t('steps.title') }}</h2>
+    <div class="steps-head-row">
+      <div class="section-head">
+        <span class="eyebrow">{{ i18n.t('steps.eyebrow') }}</span>
+        <h2 class="section-title">{{ i18n.t('steps.title') }}</h2>
+      </div>
+
+      <div class="cycle" aria-hidden="true">
+        <div class="cycle-ring"></div>
+
+        @for (s of steps; track s.key; let i = $index) {
+          <div class="cycle-node cycle-node-{{ i }}">
+            <lib-icon-badge [icon]="s.icon" />
+            <span>{{ i18n.t(s.key + '.short') }}</span>
+          </div>
+        }
+      </div>
     </div>
 
     <div class="timeline">
-      @for (s of steps; track s.key; let last = $last) {
-        <div class="timeline-row">
+      @for (s of steps; track s.key; let last = $last; let i = $index) {
+        <div class="timeline-row" libReveal [style.--reveal-delay]="i * 110 + 'ms'">
           <div class="timeline-marker">
             <lib-icon-badge [icon]="s.icon" size="lg" />
             @if (!last) {
@@ -82,7 +119,17 @@
 
 <section class="section cta-section">
   <div class="container">
-    <div class="card-elevated cta-card">
+    <div class="card-elevated cta-card" libReveal>
+      <span class="cta-chip chip-1 float-rotate" style="--tilt: -8deg; --float-delay: 0s">
+        <lib-icon name="check-circle" [size]="16" />
+      </span>
+      <span class="cta-chip chip-2 float-rotate" style="--tilt: 6deg; --float-delay: 0.8s">
+        <lib-icon name="shield" [size]="16" />
+      </span>
+      <span class="cta-chip chip-3 float-rotate" style="--tilt: -4deg; --float-delay: 1.6s">
+        <lib-icon name="sparkles" [size]="16" />
+      </span>
+
       <h2 class="section-title">{{ i18n.t('cta.title') }}</h2>
       <p class="section-lead">{{ i18n.t('cta.lead') }}</p>
       <a routerLink="/apply" class="btn btn-primary">

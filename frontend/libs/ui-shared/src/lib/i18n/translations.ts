@@ -34,6 +34,9 @@ export const translations: Record<Lang, Record<string, string>> = {
     'steps.2.body':
       'An automated workflow embeds your request, retrieves the most relevant bank policy excerpts, and asks a local AI model to reason over them.',
     'steps.3.title': 'Get your grounded result',
+    'steps.1.short': 'Apply',
+    'steps.2.short': 'AI assessment',
+    'steps.3.short': 'Result',
     'steps.3.body':
       'A risk score, risk level and plain-language reasoning appear on your dashboard — along with the exact policy excerpts used.',
 
@@ -168,6 +171,9 @@ export const translations: Record<Lang, Record<string, string>> = {
     'steps.2.body':
       'یک گردش‌کار خودکار درخواست شما را به بردار تبدیل کرده، مرتبط‌ترین بندهای سیاست بانک را بازیابی می‌کند و از یک مدل هوش مصنوعی محلی می‌خواهد بر اساس آن‌ها استدلال کند.',
     'steps.3.title': 'نتیجهٔ مستند خود را دریافت کنید',
+    'steps.1.short': 'درخواست',
+    'steps.2.short': 'ارزیابی هوش مصنوعی',
+    'steps.3.short': 'نتیجه',
     'steps.3.body':
       'امتیاز ریسک، سطح ریسک و استدلال به زبان ساده در داشبورد شما نمایش داده می‌شود؛ همراه با بندهای دقیق سیاست که استفاده شده‌اند.',
 
